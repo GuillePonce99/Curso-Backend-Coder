@@ -12,10 +12,8 @@ router.use(express.urlencoded({ extended: true }));
 
 router.post("/", async (req, res) => {
 
-    const carrito = req.body
-
     try {
-        await miCarrito.addCart(carrito)
+        await miCarrito.addCart()
         res.json({status: 200, mensaje: "CARRITO CREADO"})
     }
     catch (err) {
@@ -29,6 +27,15 @@ router.get("/:cid",async (req,res)=>{
         let carrito = await miCarrito.getCartsById(Number(cid))
         
         res.json({status: 200, mensaje: `CARRITO N° ${cid}`, data : carrito.products })
+    }
+    catch (err){
+        res.status(err.statusCode).send(` ${err}`);
+    }
+})
+
+router.get("/",async (req,res)=>{
+    try {  
+        res.json({status: 400, mensaje: "INGRESE UN ID CORRESPONDIENTE A UN CARRITO" })
     }
     catch (err){
         res.status(err.statusCode).send(` ${err}`);

@@ -9,17 +9,9 @@ export class CartManager {
         this.carts = [];
     }
 
-    async addCart(cart) {
+    async addCart() {
         const products = []
         this.carts = await this.getCarts();
-        /* 
-        const validarCode = this.products.some((e) => e.code === productoBody.code)
-        if (validarCode) {
-            let error = new Error(`Ya existe el producto con el ID: ${productoBody.code}`);
-            error.statusCode = 400
-            throw error;
-        }        
-        */
         this.carts.push({ id: this.carts.length ? this.carts[this.carts.length - 1].id + 1 : 1, products })
         await utils.write(this.path, this.carts);
     };
@@ -65,7 +57,6 @@ export class CartManager {
             throw error;
         }
         
-        
         const verificarCantidad = carrito.products.some((e)=> e.id === productoAgregar.id )
         const productIndex = carrito.products.findIndex((e)=> e.id === productoAgregar.id )
 
@@ -77,12 +68,8 @@ export class CartManager {
         }
 
         await utils.write(this.path, this.carts);
-        /*
-        this.carts.push({...carrito, products : [{id: productoAgregar.id, title: productoAgregar.title}]})
-        */
 
     }
-
 
 }
 
