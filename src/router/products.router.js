@@ -3,7 +3,7 @@ import express from "express"
 import ProductManager from "../manager/ProductManager.js"
 
 const router = Router()
-let miProducto = new ProductManager.ProductManager("./productos.json")
+let miProducto = new ProductManager.ProductManager("productos.json")
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));

@@ -1,0 +1,14 @@
+<div>
+    {{#if isAdmin}}
+        {{#each food}}
+            <div class="comidas">
+                Nombre: {{this.name}} 
+                Precio: {{this.price}}
+            </div>
+        {{/each}}
+    {{else}}
+        <p class="texto">HOLA {{user.nombre}}</p>
+    {{/if}}
+</div>
+
+<script src="/js/index.js"></script>

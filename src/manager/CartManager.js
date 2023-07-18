@@ -1,4 +1,4 @@
-import utils from "../../utils.js"
+import utils from "../utils.js"
 import ProductManager from "./ProductManager.js";
 
 const miProducto = new ProductManager.ProductManager("./productos.json")
