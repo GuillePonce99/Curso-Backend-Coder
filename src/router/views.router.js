@@ -1,27 +1,20 @@
 import { Router } from "express";
-import food from "../dato.js"
+import { home, realtimeproducts, realtimeproductsDB, chat, multer, products, carts } from "../controllers/views.controller.js";
 
 const router = Router()
 
-router.get("/users", (req,res)=>{
-    let testUser = {
-        nombre:"Guillermo",
-        apellido:"Ponce de leon",
-        role:"admin",
-    }
+router.get("/home", home)
 
-    res.render("users", {user : testUser, food , isAdmin: testUser.role === "admin",styles: "styles.css"})
-})
+router.get("/realtimeproducts", realtimeproducts)
 
-router.get("/multer", (req,res)=>{
-    let testUser = {
-        nombre:"Guillermo",
-        apellido:"Ponce de leon",
-        role:"admin",
-    }
+router.get("/realtimeproductsdb", realtimeproductsDB)
 
-    res.render("multer", {user : testUser, food , isAdmin: testUser.role === "admin",styles: "styles.css"})
-})
+router.get("/chat", chat)
 
+router.get("/multer", multer)
+
+router.get("/products", products)
+
+router.get("/carts/:cid", carts)
 
 export default router

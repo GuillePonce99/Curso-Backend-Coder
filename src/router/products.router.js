@@ -1,12 +1,15 @@
 import { Router } from "express";
-import express from "express"
-import ProductManager from "../manager/ProductManager.js"
+import ProductModel from "../dao/models/products.model.js";
+import { productsController } from "../controllers/product.controller.js"
+
+//import ProductManager from "../manager/ProductManager.js"
 
 const router = Router()
-let miProducto = new ProductManager.ProductManager("productos.json")
+/*
 
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
+//FS
+
+let miProducto = new ProductManager.ProductManager("productos.json")
 
 router.get("/", async (req, res) => {
     const productos = await miProducto.getProducts()
@@ -25,22 +28,22 @@ router.get("/", async (req, res) => {
 })
 
 
-router.get("/:pid", async (req, res)=> {
+router.get("/:pid", async (req, res) => {
     const { pid } = req.params
-    
-    try{
+
+    try {
         res.send(await miProducto.getProductsById(Number(pid)))
     }
-    catch (err){
+    catch (err) {
         res.status(err.statusCode).send(` ${err}`);
     }
 })
 
 
 router.post("/", async (req, res) => {
-    const {title, description, code, price, status, stock, category, thumbnails } = req.body;
-    
-    if (!title || !description || !code || !price ||  !stock || !category) {
+    const { title, description, code, price, status, stock, category, thumbnails } = req.body;
+
+    if (!title || !description || !code || !price || !stock || !category) {
         return res.status(401).json({ message: "Faltan datos" });
     }
     if (!thumbnails) {
@@ -49,51 +52,64 @@ router.post("/", async (req, res) => {
     if (status === undefined) {
         req.body.status = true
     }
-    
+
     req.body.code = req.body.code.toString()
     try {
         await miProducto.addProduct(req.body)
-        res.json({status: 200, mensaje: "PRODUCTO CARGADO EXITOSAMENTE", data: req.body})
+        res.json({ status: 200, mensaje: "PRODUCTO CARGADO EXITOSAMENTE", data: req.body })
     }
     catch (err) {
         res.status(err.statusCode).send(` ${err}`);
     }
 })
 
-router.put("/",(req,res)=>{
-    res.json({status: 400, mensaje: "INGRESE EL ID DEL PRODUCTO A MODIFICAR"})
+router.put("/", (req, res) => {
+    res.json({ status: 400, mensaje: "INGRESE EL ID DEL PRODUCTO A MODIFICAR" })
 })
 
-router.put("/:pid", async (req, res)=> {
+router.put("/:pid", async (req, res) => {
     const { pid } = req.params
-    if (req.body.code){
+    if (req.body.code) {
         req.body.code = req.body.code.toString()
     }
-    
-    try{
-        await miProducto.updateProduct(Number(pid),req.body),
-        res.json({status: 200, mensaje: "PRODUCTO ACTUALIZADO CORRECTAMENTE", data: req.body})
+
+    try {
+        await miProducto.updateProduct(Number(pid), req.body),
+            res.json({ status: 200, mensaje: "PRODUCTO ACTUALIZADO CORRECTAMENTE", data: req.body })
     }
-    catch (err){
+    catch (err) {
         res.status(err.statusCode).send(` ${err}`);
     }
 })
 
-router.delete("/",(req,res)=>{
-    res.json({status: 400, mensaje: "INGRESE EL ID DEL PRODUCTO A ELIMINAR "})
+router.delete("/", (req, res) => {
+    res.json({ status: 400, mensaje: "INGRESE EL ID DEL PRODUCTO A ELIMINAR " })
 })
 
-router.delete("/:pid", async (req, res)=> {
+router.delete("/:pid", async (req, res) => {
     const { pid } = req.params
 
-    try{
+    try {
         await miProducto.deleteProduct(Number(pid)),
-        res.json({status: 200, mensaje: "PRODUCTO ELIMINADO"})
+            res.json({ status: 200, mensaje: "PRODUCTO ELIMINADO" })
     }
-    catch (err){
+    catch (err) {
         res.status(err.statusCode).send(` ${err}`);
     }
 })
+*/
+
+//DB
+
+router.get("/", productsController.getProducts)
+
+router.get("/:pid", productsController.getProductById)
+
+router.post("/", productsController.addProduct)
+
+router.delete("/:pid", productsController.deleteProduct)
+
+router.put("/:pid", productsController.updateProduct)
 
 
 export default router

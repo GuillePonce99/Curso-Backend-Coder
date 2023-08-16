@@ -1,0 +1,38 @@
+<div class="main-container">
+    <div class="tabla">
+        <div class="titulos">
+            <h1>CARRITO N° {{data._id}}</h1>
+            <ul>
+                <li>Code</li>
+                <li>Nombre</li>
+                <li>Descripcion</li>
+                <li>Precio</li>
+                <li>Stock</li>
+                <li>Categoria</li>
+                <li>Cantidad</li>
+            </ul>
+        </div>
+        <div id="form-real-time">
+            {{#if data.status}}
+            {{#each data.products}}
+            <ul class="producto">
+                <li class="idTitle">{{this.product.code}}</li>
+                <li><strong>{{this.product.title}}</strong></li>
+                <li>{{this.product.description}}</li>
+                <li>$ {{this.product.price}} </li>
+                <li>{{this.product.stock}}</li>
+                <li>{{this.product.category}}</li>
+                <button class="btn-addToCart">{{this.quantity}}</button>
+            </ul>
+            {{/each}}
+            {{else}}
+            <ul class="producto">
+                <p class="NotItems">No hay productos</p>
+            </ul>
+            {{/if}}
+
+
+        </div>
+    </div>
+
+</div>

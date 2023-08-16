@@ -2,62 +2,61 @@ import express from "express"
 import routerProducts from "./router/products.router.js"
 import routerCarts from "./router/carts.router.js"
 import routerFiles from "./router/files.router.js"
+import routerViews from "./router/views.router.js"
 import handlebars from "express-handlebars"
 import { __dirname } from "./utils.js"
-import routerViews from "./router/views.router.js"
+import * as dotenv from "dotenv"
+import mongoose from "mongoose"
+import socket from "./socket.js"
 import { Server } from "socket.io"
 
-const messages = []
+dotenv.config()
 const app = express()
-const port = 8080
+const port = process.env.PORT
+
+//CONEXION A BASE DE DATOS
+
+const MONGO_USER = process.env.MONGO_USER
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD
+const MONGO_DB = process.env.MONGO_DB
+
+const environment = async () => {
+    await mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@coder.amwd2xp.mongodb.net/${MONGO_DB}`)
+        .then(() => {
+            console.log("DB IS CONNECTED");
+        })
+        .catch((error) => {
+            console.log(error);
+            process.exit()
+        })
+}
+environment()
+
+//CONFIG
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/products", routerProducts)
-app.use("/api/carts", routerCarts)
 app.use(express.static("public"))
-
-// MULTER
-app.use("/api/files",routerFiles)
 
 //HANDLEBARS
 
 app.engine("handlebars", handlebars.engine())
-
-app.set("views", __dirname +"/views" )
-
+app.set("views", __dirname + "/views")
 app.set("view engine", "handlebars")
 
-app.use("/views", routerViews)
+//ENDPOINTS
 
-//app.use("/",routerViews)
+app.use("/api/products", routerProducts)
+app.use("/api/carts", routerCarts)
+app.use("/", routerViews)
+// MULTER
+app.use("/api/files", routerFiles)
 
-//Socket.io
+//SOCKET IO
 
-/*
 const httpServer = app.listen(port, () => {
-    console.log("SERVIDOR FUNCIONANDO EN PUERTO "+ port);
-});
-
-const socketServer = new Server(httpServer);
-socketServer.on("connection",socket => {
-    console.log("nueva conexion");
-    socket.on("nuevo_usuario", data=>{
-        socket.id = data.id
-        socket.user = data.user
-        socketServer.emit("nuevo_usuario_conectado", {
-            user: socket.user,
-            id: socket.id
-        });
-        socket.on("messages", (data)=>{
-            messages.push(data)
-            socketServer.emit("messageLogs",messages)
-        })
-    })
-    socket.emit("todos","DESDE EL SERVIDOR")
+    console.log(`Servidor corriendo en puerto ${port}`);
 })
-*/ 
 
-app.listen(port, () => {
-    console.log("SERVIDOR FUNCIONANDO EN PUERTO "+ port);
-});
+const io = new Server(httpServer)
+socket(io)
