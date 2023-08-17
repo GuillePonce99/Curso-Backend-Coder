@@ -20,14 +20,13 @@ socket.on("lista_productos_db", (data) => {
 
     data.forEach((product) => {
         element += `
-      <ul class="producto">
+      <ul class="ul-dos">
         <li class="idTitle">${product.code}</li>
         <li><strong>${product.title}</strong></li>
         <li>${product.description}</li>
         <li>$ ${product.price}</li>
         <li>${product.stock}</li>
         <li>${product.category}</li>
-        <button>"AGREGAR"</button>
       </ul>`;
     });
     form.innerHTML = element;
@@ -36,19 +35,6 @@ socket.on("lista_productos_db", (data) => {
 //agregar producto
 
 boton.addEventListener("click", () => {
-    /*
-    socket.on("action", (message) => {
-        if (message.incomplete) {
-            actionAdd.innerHTML = `<p>Complete todos los datos</p>`
-
-        } else if (data.repeated) {
-            actionAdd.innerHTML = `<p>El codigo esta repetido.</p>`
-
-        } else {
-            actionAdd.innerHTML = `<p>Producto agregado!!</p>`
-        }
-    })
-    */
 
     socket.emit("agregar_producto_db", {
         title: productoTitle.value,

@@ -9,6 +9,7 @@ import * as dotenv from "dotenv"
 import mongoose from "mongoose"
 import socket from "./socket.js"
 import { Server } from "socket.io"
+import ProductModel from "./dao/models/products.model.js"
 
 dotenv.config()
 const app = express()
@@ -29,6 +30,7 @@ const environment = async () => {
             console.log(error);
             process.exit()
         })
+
 }
 environment()
 

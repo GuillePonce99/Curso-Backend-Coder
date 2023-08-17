@@ -7,12 +7,13 @@ POST http://localhost:8080/api/products/
 Content-Type: application/json
 
 {
-    "title":"Bananasss",
-    "description":"banana",
-    "code":"123421s2312",
+    "title":"Bananas2",
+    "description":"bananas",
+    "code":2,
     "price": 2,
-    "category": "frutas"
+    "category": "Frutas"
 }
+
 
 ###ACTUALIZAR PRODUCTO
 PUT http://localhost:8080/api/products/64dba2273ede751a4a2f40bf

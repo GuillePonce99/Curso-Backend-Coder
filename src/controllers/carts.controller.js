@@ -1,7 +1,7 @@
 //import CartManager from "../manager/CartManager.js"
 import ProductModel from "../dao/models/products.model.js"
 import CartsModel from "../dao/models/carts.model.js"
-import { json } from "express"
+
 
 
 // CONTROLLER FS
@@ -88,7 +88,7 @@ export class cartsController {
 
         try {
             const cart = new CartsModel()
-            cart.save()
+            await cart.save()
 
             res.status(200).json({ mensaje: `CARRITO CREADO ID: ${cart._id}`, id: cart._id })
         }
@@ -108,8 +108,10 @@ export class cartsController {
 
             let producto = await ProductModel.findOne({ _id: pid })
 
-            if (carrito === null || producto === null) {
-                return res.status(404).json({ error: "Not Found" })
+            if (carrito === null) {
+                return res.status(404).json({ error: "Cart Not Found" })
+            } else if (carrito === null || producto === null) {
+                return res.status(404).json({ error: "Product Not Found" })
             }
 
             const productIndex = carrito.products.findIndex(e => e.product._id.equals(producto._id))
@@ -219,15 +221,17 @@ export class cartsController {
         const { quantity } = req.body
 
         try {
+
             const carrito = await CartsModel.findById(cid)
+
             if (carrito === null) {
-                return res.status(404).json({ error: "Not Found" })
+                return res.status(404).json({ error: "Cart Not Found" })
             }
 
             const productIndex = carrito.products.findIndex((e) => e.product._id.equals(pid))
 
             if (productIndex === -1) {
-                return res.status(404).json({ error: "Not Found" })
+                return res.status(404).json({ error: "Product Not Found" })
             }
 
             carrito.products[productIndex].quantity += Number(quantity)

@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="tabla">
         <div class="titulos">
-            <h1>CARRITO N° {{data._id}}</h1>
+            <h1 id="title-cart" cartId={{data._id}}>CARRITO N° {{data._id}}</h1>
             <ul>
                 <li>Code</li>
                 <li>Nombre</li>
@@ -15,14 +15,19 @@
         <div id="form-real-time">
             {{#if data.status}}
             {{#each data.products}}
-            <ul class="producto">
+            <ul class="producto" data-id={{this.product._id}}>
                 <li class="idTitle">{{this.product.code}}</li>
                 <li><strong>{{this.product.title}}</strong></li>
                 <li>{{this.product.description}}</li>
                 <li>$ {{this.product.price}} </li>
                 <li>{{this.product.stock}}</li>
                 <li>{{this.product.category}}</li>
-                <button class="btn-addToCart">{{this.quantity}}</button>
+                <div class="btn-quantity">
+                    <button class="btn-increase">➕</button>
+                    <button class="btn-addToCart" quantity={{this.quantity}}>{{this.quantity}}</button>
+                    <button class="btn-decrease">➖</button>
+                </div>
+
             </ul>
             {{/each}}
             {{else}}
@@ -36,3 +41,5 @@
     </div>
 
 </div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/js/cart.js"></script>

@@ -3,34 +3,36 @@
     </div>
     <div class="tabla">
         <div class="titulos">
-            <h1>PRODUCTOS</h1>
-            <ul>
-                <li>ID</li>
-                <li>Nombre</li>
-                <li>Descripcion</li>
-                <li>Precio</li>
-                <li>Stock</li>
-                <li>Categoria</li>
+            <h1>LINKS</h1>
+            <ul class="links">
+                <li>
+                    <form class="btn-ptr" action="/realTimeProducts">
+                        <input type="submit" value="PRODUCTOS EN TIEMPO REAL FS">
+                    </form>
+                </li>
+                <li>
+                    <form class="btn-ptr" action="/realTimeProductsDB">
+                        <input type="submit" value="PRODUCTOS EN TIEMPO REAL DB">
+                    </form>
+                </li>
+                <li>
+                    <form class="btn-ptr" action="/chat">
+                        <input type="submit" value="CHAT">
+                    </form>
+                </li>
+                <li>
+                    <form class="btn-ptr" action="/products">
+                        <input type="submit" value="PRODUCTOS">
+                    </form>
+                </li>
+                <li>
+                    <form class="btn-ptr" action="/multer">
+                        <input type="submit" value="MULTER">
+                    </form>
+                </li>
             </ul>
         </div>
-        <div>
-            {{#each productos}}
-            <ul class="producto">
-                <li>{{this.id}}</li>
-                <li><strong>{{this.title}}</strong></li>
-                <li>{{this.description}}</li>
-                <li>$ {{this.price}}</li>
-                <li>{{this.stock}}</li>
-                <li>{{this.category}}</li>
-            </ul>
-            {{/each}}
-        </div>
-        </>
-        <form class="btn-ptr" action="/realTimeProducts">
-            <input type="submit" value="PRODUCTOS EN TIEMPO REAL">
-        </form>
-        <form class="btn-ptr" action="/realTimeProductsDB">
-            <input type="submit" value="PRODUCTOS EN TIEMPO REAL DB">
-        </form>
+
+
     </div>
 </div>

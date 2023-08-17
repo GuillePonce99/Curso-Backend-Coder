@@ -115,8 +115,9 @@ export class productsController {
                 page: result.page,
                 hasPrevPage: result.hasPrevPage,
                 hasNextPage: result.hasNextPage,
-                prevLink: result.hasPrevPage ? `/api/products?limit=${options.limit}&page=${result.prevPage}&sort=${options.sort}&query=${query}` : null,
-                nextLink: result.hasNextPage ? `/api/products?limit=${options.limit}&page=${result.nextPage}&sort=${sort}&query=${query}` : null
+                prevLink: result.hasPrevPage ? `/api/products?limit=${options.limit}&page=${result.prevPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null,
+                nextLink: result.hasNextPage ? `/api/products?limit=${options.limit}&page=${result.nextPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null
+
             }
 
             res.status(200).json({ data: response })
@@ -279,8 +280,8 @@ export class productsController {
                 page: result.page,
                 hasPrevPage: result.hasPrevPage,
                 hasNextPage: result.hasNextPage,
-                prevLink: result.hasPrevPage ? `/products?limit=${options.limit}&page=${result.prevPage}` : null,
-                nextLink: result.hasNextPage ? `/products?limit=${options.limit}&page=${result.nextPage}` : null
+                prevLink: result.hasPrevPage ? `/products?limit=${options.limit}&page=${result.prevPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null,
+                nextLink: result.hasNextPage ? `/products?limit=${options.limit}&page=${result.nextPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null
             }
 
             return response

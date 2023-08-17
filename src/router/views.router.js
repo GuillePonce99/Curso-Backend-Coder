@@ -1,20 +1,20 @@
 import { Router } from "express";
-import { home, realtimeproducts, realtimeproductsDB, chat, multer, products, carts } from "../controllers/views.controller.js";
+import { viewsController } from "../controllers/views.controller.js";
 
 const router = Router()
 
-router.get("/home", home)
+router.get("/home", viewsController.home)
 
-router.get("/realtimeproducts", realtimeproducts)
+router.get("/realtimeproducts", viewsController.realtimeproducts)
 
-router.get("/realtimeproductsdb", realtimeproductsDB)
+router.get("/realtimeproductsdb", viewsController.realtimeproductsDB)
 
-router.get("/chat", chat)
+router.get("/chat", viewsController.chat)
 
-router.get("/multer", multer)
+router.get("/multer", viewsController.multer)
 
-router.get("/products", products)
+router.get("/products", viewsController.products)
 
-router.get("/carts/:cid", carts)
+router.get("/carts/:cid", viewsController.carts)
 
 export default router

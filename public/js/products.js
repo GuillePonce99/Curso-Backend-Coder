@@ -2,6 +2,7 @@ const cartIdText = document.getElementById("cartId")
 const btnAdd = document.querySelectorAll(".btn-addToCart")
 const btnCart = document.getElementById("btn-cart")
 
+
 const updateCart = (cid, products) => {
     cartBody = {
         "cartId": cid,
@@ -61,8 +62,6 @@ btnAdd.forEach(btn => {
 
         const productId = ul.dataset.id
 
-        console.log(productId);
-
         let cartId = getCartId()
         let products = []
 
@@ -78,8 +77,6 @@ btnAdd.forEach(btn => {
                 const { id } = data
 
                 cid = id
-
-                //updateCartNumber(cartId)
 
                 updateCart(cid, products)
 
@@ -97,8 +94,7 @@ btnAdd.forEach(btn => {
                         background: "linear-gradient(to right, #00b09b, #96c93d)",
                     }
                 }).showToast()
-
-            }).catch(error => {
+            }).catch((error) => {
 
                 if (error) {
 
@@ -116,13 +112,10 @@ btnAdd.forEach(btn => {
                     }).showToast();
 
                 }
-
             })
-
-
         }
 
-        cartId = getCartId()
+        cartId = await getCartId()
 
         await fetch(`/api/carts/${cartId}/product/${productId}`, {
 
@@ -131,6 +124,7 @@ btnAdd.forEach(btn => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ productId }),
+
         }).then(res => res.json()).then(data => {
 
             updateCart(cartId, data.data.products)
@@ -154,7 +148,6 @@ btnAdd.forEach(btn => {
             }).showToast()
 
         }).catch((error) => {
-
             if (error) {
 
                 Toastify({
@@ -168,20 +161,8 @@ btnAdd.forEach(btn => {
                     }
                 }).showToast();
 
-                console.log(error);
-
             }
         })
-
-
     })
+})
 
-});
-
-//console.log(`cart id: ${cartId}   products: ${products}   cartBody:  `);
-
-
-/*
-
-
-*/
