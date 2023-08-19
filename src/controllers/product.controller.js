@@ -106,6 +106,9 @@ export class productsController {
 
             let status = result ? "success" : "error"
 
+            let queryFormated = query ? req.query.query.replace(/ /g, "%20") : ""
+
+
             let response = {
                 status,
                 payload: result.docs,
@@ -115,8 +118,8 @@ export class productsController {
                 page: result.page,
                 hasPrevPage: result.hasPrevPage,
                 hasNextPage: result.hasNextPage,
-                prevLink: result.hasPrevPage ? `/api/products?limit=${options.limit}&page=${result.prevPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null,
-                nextLink: result.hasNextPage ? `/api/products?limit=${options.limit}&page=${result.nextPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null
+                prevLink: result.hasPrevPage ? `/api/products?limit=${options.limit}&page=${result.prevPage}&sort=${req.query.sort}${query ? `&query=${queryFormated}` : ""}` : null,
+                nextLink: result.hasNextPage ? `/api/products?limit=${options.limit}&page=${result.nextPage}&sort=${req.query.sort}${query ? `&query=${queryFormated}` : ""}` : null
 
             }
 
@@ -271,6 +274,9 @@ export class productsController {
 
             let status = result ? "success" : "error"
 
+
+            let queryFormated = query ? req.query.query.replace(/ /g, "%20") : ""
+
             let response = {
                 status,
                 payload: product,
@@ -280,8 +286,8 @@ export class productsController {
                 page: result.page,
                 hasPrevPage: result.hasPrevPage,
                 hasNextPage: result.hasNextPage,
-                prevLink: result.hasPrevPage ? `/products?limit=${options.limit}&page=${result.prevPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null,
-                nextLink: result.hasNextPage ? `/products?limit=${options.limit}&page=${result.nextPage}&sort=${req.query.sort}${query ? `&query=${req.query.query}` : ""}` : null
+                prevLink: result.hasPrevPage ? `/products?limit=${options.limit}&page=${result.prevPage}&sort=${req.query.sort}${query ? `&query=${queryFormated}` : ""}` : null,
+                nextLink: result.hasNextPage ? `/products?limit=${options.limit}&page=${result.nextPage}&sort=${req.query.sort}${query ? `&query=${queryFormated}` : ""}` : null
             }
 
             return response

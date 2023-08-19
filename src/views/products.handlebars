@@ -1,21 +1,20 @@
 <div class="main-container">
     <div class="tabla">
         <div class="titulos">
-            <div class="container-cart">
+            <div class="container-cart" id="container-cart">
                 <h1>LISTA DE PRODUCTOS</h1>
-                <div class="btn-cart" id="btn-cart">
+                <a href="" class="btn-cart" id="btn-cart">
                     <div>🛒</div>
-
-                </div>
+                </a>
             </div>
             <ul>
-                <li>Code</li>
-                <li>Nombre</li>
-                <li>Descripcion</li>
-                <li>Precio</li>
-                <li>Stock</li>
-                <li>Categoria</li>
-                <li>Agregar</li>
+                <li class="li-titles">Code</li>
+                <li class="li-titles">Nombre</li>
+                <li class="li-description li-titles">Descripcion</li>
+                <li class="li-price li-titles">Precio</li>
+                <li class="li-titles">Stock</li>
+                <li class="li-titles">Categoria</li>
+                <li class="li-titles">Agregar</li>
 
             </ul>
         </div>
@@ -24,8 +23,8 @@
             <ul class="producto" data-id={{this._id}}>
                 <li class="idTitle">{{this.code}}</li>
                 <li><strong>{{this.title}}</strong></li>
-                <li>{{this.description}}</li>
-                <li>$ {{this.price}} </li>
+                <li class="li-description">"{{this.description}}"</li>
+                <li class="li-price">$ {{this.price}} </li>
                 <li>{{this.stock}}</li>
                 <li>{{this.category}}</li>
                 <button class="btn-addToCart" id="btn-addToCart">➕</button>
@@ -33,13 +32,20 @@
             {{/each}}
         </div>
         <div class="container-btn-pages">
+
             {{#if data.hasPrevPage}}
             <a class="btn-pages" href={{data.prevLink}}>PREV</a>
+            {{else}}
+            <a class="btn-pages-none">PREV</a>
             {{/if}}
+
             <p>{{data.page}}</p>
             {{#if data.hasNextPage}}
             <a class="btn-pages" href={{data.nextLink}}>NEXT</a>
+            {{else}}
+            <a class="btn-pages-none">NEXT</a>
             {{/if}}
+
         </div>
     </div>
 

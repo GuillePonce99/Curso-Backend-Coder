@@ -1,7 +1,6 @@
-const cartIdText = document.getElementById("cartId")
 const btnAdd = document.querySelectorAll(".btn-addToCart")
-const btnCart = document.getElementById("btn-cart")
-
+const btnCart = document.getElementById("container-cart")
+let cartBody
 
 const updateCart = (cid, products) => {
     cartBody = {
@@ -31,30 +30,42 @@ const setCart = () => {
 const updateCartNumber = () => {
     let ls = localStorage.cart
     let data
-    let number = ""
+    let price = []
+    let quantity = []
     let element = ``
     if (ls === undefined) {
         return 0
     } else {
         data = JSON.parse(ls)
-        number += data.products.length
-        element += `
+        //count += data.products.length
+        data.products.map((product) => {
+            price.push(product.product.price * product.quantity)
+            quantity.push(product.quantity)
+        })
+        let total = price.reduce((acc, currentValue) => acc + currentValue, 0);
+        let count = quantity.reduce((acc, currentValue) => acc + currentValue, 0)
 
-        <div>🛒</div>
-        <a href="/carts/${data.cartId}" class="cartId">${number}</a>
+        element += `
+        <h1>LISTA DE PRODUCTOS</h1>
+        <a href="/carts/${data.cartId}" class="btn-cart" id="btn-cart">
+            <div>🛒</div>
+            <p  class="counter">${count}</p>
+            <p  class="total">$${total}</p>
+        </a>
         `
-        btnCart.dat
         return btnCart.innerHTML = element
     }
 }
 updateCartNumber()
 
-let cartBody
 
+/*
 btnCart.addEventListener("click", async (e) => {
     const cid = getCartId()
     await fetch(`/carts/${cid}`)
 })
+*/
+
 
 btnAdd.forEach(btn => {
     btn.addEventListener('click', async (e) => {

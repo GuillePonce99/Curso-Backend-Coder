@@ -20,20 +20,21 @@ body {
     margin: 0px auto;
 }
 
-::selection {
-    background: rgba(82, 179, 217, 0.3);
-    color: inherit;
-}
-
-a {
-    color: rgba(82, 179, 217, 0.9);
-}
-
 .main-container {
     margin: 150px auto;
-    width: 800px;
+    width: 950px;
 }
 
+.cart {
+
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 2fr 1fr 1fr 1fr 1fr;
+    list-style-type: none;
+    border-bottom: 3px solid #246355;
+    padding: 5px 20px;
+    align-items: center;
+
+}
 
 ul {
     display: grid;
@@ -41,6 +42,7 @@ ul {
     list-style-type: none;
     border-bottom: 3px solid #246355;
     padding: 5px 20px;
+    align-items: center;
 }
 
 
@@ -58,6 +60,18 @@ ul {
 li {
     padding: 20px;
     text-align: center;
+}
+
+.li-description {
+    text-align: start;
+}
+
+.li-price {
+    font-weight: bold;
+}
+
+.li-titles {
+    font-weight: bold;
 }
 
 .titulos {
@@ -139,13 +153,20 @@ h2 {
     color: #0F362D;
 }
 
+.btn-delete {
+    background: none;
+    border: none;
+    text-decoration: none;
+    font-size: 15px;
+}
+
 .btn-ptr input,
 .btn_delete,
 .btn_add {
     border-radius: 8px;
-    background-color: #0F362D;
+    background-color: #246355;
     color: white;
-    border: none;
+    border: solid 3px #0F362D;
     padding: 10px;
     text-decoration: none;
     font-size: 12px;
@@ -156,11 +177,18 @@ h2 {
 .btn_add:hover,
 .btn-pages:hover,
 .btn-addToCart:hover,
-.cartId:hover,
+.cartId:hover {
+    box-shadow: 0 0px 25px 3px rgba(0, 0, 0, 0.8), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-cart:hover {
+    box-shadow: 0 0px 20px 1px rgba(0, 0, 0, 0.4)
+}
+
 .btn-increase:hover,
-.btn-decrease:hover {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    font-size: 15px;
+.btn-decrease:hover,
+.btn-delete:hover {
+    font-size: 18px;
 }
 
 .inputs input {
@@ -179,7 +207,20 @@ h2 {
 .btn-pages {
     border-radius: 8px;
     background-color: #0F362D;
+    font-weight: bold;
     color: white;
+    border: none;
+    padding: 10px;
+    margin: auto 20px;
+    text-decoration: none;
+    font-size: 12px;
+    text-align: center;
+}
+
+.btn-pages-none {
+    border-radius: 8px;
+    background-color: #0F362D;
+    color: gray;
     border: none;
     padding: 10px;
     margin: auto 20px;
@@ -200,13 +241,16 @@ h2 {
 
 .btn-addToCart,
 .btn-increase,
-.btn-decrease {
+.btn-decrease,
+.elem-quantity {
+    font-weight: bold;
     width: 30px;
     height: 30px;
     border-radius: 8px;
-    background-color: #0F362D;
+    background-color: #246355;
+    border: solid 2px #0F362D;
     color: white;
-    border: none;
+
     margin: auto;
     text-decoration: none;
     font-size: 15px;
@@ -221,9 +265,12 @@ h2 {
 }
 
 .NotItems {
+    color: gray;
     font-size: 50px;
     margin: 0 auto;
     text-align: center;
+    font-weight: 500;
+    padding: 30px;
 
 }
 
@@ -231,18 +278,21 @@ h2 {
     margin: auto 0;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     row-gap: 15px;
-    background: none;
-    border: none;
+    border: solid 2px #0F362D;
+    border-radius: 8%;
+    text-decoration: none;
+    align-items: center;
+    padding: 10px
 }
 
-.btn-cart a {
-    text-decoration: none;
+.total {
+    font-size: 20px;
+    color: darkgray;
 }
 
 .btn-cart div {
-    margin: auto 10px;
+    margin: auto 0;
     font-size: 20px;
 }
 
@@ -256,12 +306,42 @@ h2 {
     color: aliceblue;
 }
 
+.counter {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+    position: absolute;
+    z-index: 2;
+    margin-top: -28px;
+    margin-left: 18px;
+    border-radius: 10em;
+    padding: 1px 7px;
+    background-color: #fe1212;
+    font-size: 11px;
+    color: #fff;
+
+}
+
 .container-cart {
     padding-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around
 }
+
+.total-cart {
+    padding: 20px;
+}
+
+.total-container {
+    background-color: #246355;
+    border-top: solid 5px #0F362D;
+    color: white;
+    margin-top: -2px;
+}
+
+.btn-volver {
+    margin-bottom: 30px;
+}
+
 
 
 /* ---------------------------------CHAT-------------------------*/

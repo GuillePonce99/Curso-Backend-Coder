@@ -205,7 +205,6 @@ export class cartsController {
 
             res.status(200).json({ mensaje: `PRODUCTO ID: ${pid} ELIMINADO DEL CARRITO` })
 
-
         }
 
         catch (error) {
@@ -278,7 +277,7 @@ export class cartsController {
 
             let status = true
 
-            if (products.length < 0) {
+            if (products.length <= 0) {
                 status = false
             }
 
