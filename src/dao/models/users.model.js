@@ -4,18 +4,26 @@ const Schema = mongoose.Schema
 const collection = "users"
 
 const userSchema = new Schema({
-    first_name: {
+    firstName: {
         type: String,
-        index: true
+        require: true
     },
-    last_name: {
-        type: String
+    lastName: {
+        type: String,
+        require: true
+    },
+    age: {
+        type: Number,
+        require: true
     },
     email: {
-        type: String
+        type: String,
+        require: true,
+        unique: true
     },
-    gender: {
-        type: String
+    password: {
+        type: String,
+        require: true
     }
 })
 

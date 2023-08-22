@@ -1,5 +1,4 @@
 import { Router } from "express";
-import ProductModel from "../dao/models/products.model.js";
 import { productsController } from "../controllers/product.controller.js"
 
 //import ProductManager from "../manager/ProductManager.js"

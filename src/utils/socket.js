@@ -1,6 +1,6 @@
-import { ProductManager } from "./dao/fileSystem/ProductManager.js";
-import ProductModel from "./dao/models/products.model.js";
-import { productsController } from "./controllers/product.controller.js"
+import { ProductManager } from "../dao/fileSystem/ProductManager.js";
+import ProductModel from "../dao/models/products.model.js";
+import { productsController } from "../controllers/product.controller.js"
 
 const miProducto = new ProductManager("productos.json")
 

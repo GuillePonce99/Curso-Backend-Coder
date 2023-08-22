@@ -45,6 +45,13 @@ ul {
     align-items: center;
 }
 
+.ul-profile {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.ul-profile-2 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
 
 .ul-dos {
     display: grid;
@@ -87,6 +94,10 @@ li {
     width: 100%;
     margin-bottom: 80px;
     border: 10px solid #0F362D;
+}
+
+.profile-container {
+    margin-top: -140px;
 }
 
 h1 {
@@ -162,7 +173,8 @@ h2 {
 
 .btn-ptr input,
 .btn_delete,
-.btn_add {
+.btn_add,
+.btn-logout {
     border-radius: 8px;
     background-color: #246355;
     color: white;
@@ -172,12 +184,22 @@ h2 {
     font-size: 12px;
 }
 
+.btn-logout {
+    width: 8vw;
+    background-color: #632432;
+    border: solid 3px #461923;
+    font-size: 16px;
+    padding: 3px;
+    margin: 0 auto;
+}
+
 .btn-ptr input:hover,
 .btn_delete:hover,
 .btn_add:hover,
 .btn-pages:hover,
 .btn-addToCart:hover,
-.cartId:hover {
+.cartId:hover,
+.btn-logout:hover {
     box-shadow: 0 0px 25px 3px rgba(0, 0, 0, 0.8), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -264,7 +286,7 @@ h2 {
     border-radius: 8px;
 }
 
-.NotItems {
+.notItems {
     color: gray;
     font-size: 50px;
     margin: 0 auto;
@@ -272,6 +294,11 @@ h2 {
     font-weight: 500;
     padding: 30px;
 
+}
+
+.notUser {
+    font-size: 30px;
+    padding: 15px;
 }
 
 .btn-cart {
@@ -342,6 +369,10 @@ h2 {
     margin-bottom: 30px;
 }
 
+.profile-role {
+    font-weight: bold;
+    color: #246355;
+}
 
 
 /* ---------------------------------CHAT-------------------------*/

@@ -13,20 +13,12 @@ export class viewsController {
         res.render("home", { productos, style: "styles.css", title: "PRODUCTOS" })
     }
 
-    static realtimeproducts = async (req, res) => {
-        res.render("realTimeProducts", { style: "styles.css", title: "PRODUCTOS-REAL-TIME" })
-    }
-
     static chat = async (req, res) => {
         res.render("chat", { style: "chat.css", title: "CHAT" })
     }
 
-    static multer = (req, res) => {
-        res.render("multer", { style: "styles.css" })
-    }
-
-    static realtimeproductsDB = async (req, res) => {
-        res.render("realTimeProductsDB", { style: "styles.css", title: "PRODUCTOS-REAL-TIME-DB" })
+    static realtimeproducts = async (req, res) => {
+        res.render("realTimeProducts", { style: "styles.css", title: "PRODUCTOS-REAL-TIME" })
     }
 
     static products = async (req, res) => {
@@ -40,6 +32,15 @@ export class viewsController {
 
         res.render("carts", { style: "styles.css", title: "CARRITO", data })
     }
+
+    static signup = async (req, res) => {
+        res.render("signup", { style: "login.css" })
+    }
+
+    static login = async (req, res) => {
+        res.render("login", { style: "login.css" })
+    }
+
 }
 
 
